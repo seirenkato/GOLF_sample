@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="viewport-fit=cover, initial-scale=1.0, maximum-scale=10.0, user-scalable=yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="GOLF-17">
+  <title>ゴルフユニフォーム｜横スクロールタイプ</title>
+  <link rel="stylesheet" href="css/swiper-bundle.min.css">
+  <link rel="stylesheet" href="css/css.css">
+  <!-- <script type="module" src="./Javascript/camera_utils.js" crossorigin="anonymous"></script> -->
+  <!-- <script type="module" src="./Javascript/control_utils.js" crossorigin="anonymous"></script> -->
+  <!-- <script type="module" src="./Javascript/drawing_utils.js" crossorigin="anonymous"></script> -->
+  <!-- <script type="module" src="./Javascript/face_mesh.js" crossorigin="anonymous"></script> -->
+  <!-- <script src="JavaSprict/Thumbnails.js"></script>
+  <script src="JavaSprict/Product_image.js"></script>
+  <script src="JavaSprict/swiper-bundle.min.js"></script>
+  <script src="JavaSprict/name.js"></script>
+  <script src="JavaSprict/JavaScript.js"></script> -->
+
+
+  <!-- <script src="https://unpkg.com/lut-filter/webgpu.js"></script> -->
+  <script src="https://unpkg.com/lut-filter/webgl.js"></script>
+
+  <link rel="shortcut icon" href="./../img/images/favicon.ico"  id="favicon">
+  <link rel="apple-touch-icon" href="./../img/images/favicon.ico">
+</head>
+
+<body onload="open()">
+  <main id="main2">
+
+    <canvas id="backgraund_image" class="blur"></canvas>
+
+    <div id="main_box">
+
+      <div id="image_box">
+        <canvas id="main_image_mannequin" class="feedin image_width"></canvas>
+        <canvas id="main_image_top" class="feedin image_width"></canvas>
+        <!-- <img id="main_image_bottom" class="feedin image_width" src="images/non_image.png"> -->
+        <canvas id="main_image_bottom" class="feedin image_width"></canvas>
+        <canvas id="canvas2" style="z-index: 25; position: absolute;"></canvas>
+
+        <!-- <img id="camera" src="icon/camera.svg" onclick="previewImage()">
+        <label id="upload4" for="upload3">
+          <img src="icon/camera.svg">
+        </label>
+        <input id="upload3" type="file" name="image" accept="image/*" capture="camera" onChange="imgPreView2(event)"> -->
+
+        <label id="upload2" for="upload">
+          <img src="./../img/icon/camera.svg">
+        </label>
+        <input id="upload" type="file" name="image" accept="image/*" capture="camera" onChange="imgPreView(event)">
+
+        <img src="./../img/icon/backgraund.svg" onclick="backgraund_change()" id="backgraund_button"
+          class="effect-target hidden-print">
+        <!-- <img src="icon/rotate.png" onclick="rotate()" id="rotate" class="effect-target hidden-print"> -->
+
+      </div>
+
+      <div id="event">
+        <div id="delete_event" onclick="delete_event()"></div>
+        <div id="top_event" onclick="top_event()"></div>
+        <div id="bottom_event" onclick="bottom_event()"></div>
+      </div>
+
+      <div id="select_box">
+
+        <div id="select_box2" class="hidden balloon1-left select_box">
+          <div id="top_pattern_select_box_01" class="">
+            <div class="swiper-container gallery-thumbs" id="top_pattern_select_box_02">
+              <div class="swiper-wrapper" id="top_pattern_select_box_03">
+                <div class="swiper-slide"></div>
+              </div>
+              <div class="swiper-scrollbar"></div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+            </div>
+          </div>
+
+          <div class="line"></div>
+
+          <div id="top_color_select_box_01">
+            <div class="swiper-container gallery-thumbs" id="top_color_select_box_02">
+              <div class="swiper-wrapper" id="top_color_select_box_03">
+                <!-- <div class="swiper-slide"></div> -->
+              </div>
+              <!-- <div class="swiper-scrollbar"></div> -->
+              <!-- <div class="swiper-button-next"></div> -->
+              <!-- <div class="swiper-button-prev"></div> -->
+            </div>
+          </div>
+        </div>
+
+        <div id="select_box3" class="hidden select_box balloon1-left">
+          <div id="bottom_pattern_select_box_01" class="">
+            <div class="swiper-container gallery-thumbs" id="bottom_pattern_select_box_02">
+              <div class="swiper-wrapper" id="bottom_pattern_select_box_03">
+                <!-- <div class="swiper-slide"></div> -->
+              </div>
+              <!-- <div class="swiper-scrollbar"></div> -->
+              <!-- <div class="swiper-button-next"></div> -->
+              <!-- <div class="swiper-button-prev"></div> -->
+            </div>
+          </div>
+
+          <div class="line"></div>
+
+          <div id="bottom_color_select_box_01">
+            <div class="swiper-container gallery-thumbs" id="bottom_color_select_box_02">
+              <div class="swiper-wrapper" id="bottom_color_select_box_03">
+                <!-- <div class="swiper-slide"></div> -->
+              </div>
+              <!-- <div class="swiper-scrollbar"></div> -->
+              <!-- <div class="swiper-button-next"></div> -->
+              <!-- <div class="swiper-button-prev"></div> -->
+            </div>
+          </div>
+        </div>
+
+        <div id="top_customize01_select_box_01" class="balloon1-right select_box hidden">
+          <div class="swiper-container gallery-thumbs" id="top_customize01_select_box_02">
+            <div class="swiper-wrapper" id="top_customize01_select_box_03">
+              <div class="swiper-slide"></div>
+            </div>
+            <div class="swiper-scrollbar"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <dic id="table00">
+
+        <!-- <input type="text" id="comment" class="hidden" placeholder="（任意）キーワード" size="10" maxlength="10"> -->
+
+        <img id="non_image" src="./../img/images/non_image.png">
+
+        <div id="table_left">
+          <div id="table01" class="hidden">
+            <div class="checkbox hidden-print" id="top_checked_div">
+              <input type="checkbox" id="checked01" checked onchange="checked01()">
+              <h2>トップス</h2>
+            </div>
+
+            <table id="top_checked_table">
+              <tr>
+                <th>型名</th>
+              </tr>
+              <tr>
+                <td id="product_top"></td>
+              </tr>
+              <tr>
+                <th>柄名</th>
+              </tr>
+              <tr>
+                <td id="type_name_top">
+                  </th>
+              </tr>
+              <tr>
+                <th>色</th>
+              </tr>
+              <tr>
+                <td id="color_name_top"></td>
+              </tr>
+              <tr>
+                <th>サイズ</th>
+              </tr>
+              <tr>
+                <td>
+                  <select id="size_top">
+                    <option hidden class="select_hidden">選択してください</option>
+                    <option value="">S</option>
+                    <option value="">M</option>
+                    <option value="">L</option>
+                    <option value="">LL</option>
+                    <option value="">3L</option>
+                    <option value="">4L</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th>金額</th>
+              </tr>
+              <tr>
+                <td id="amount_top"></td>
+              </tr>
+            </table>
+
+            <div class="checkbox hidden-print" id="bottom_checked_div">
+              <input type="checkbox" id="checked02" checked onchange="checked01()">
+              <h2>ボトムス</h2>
+            </div>
+
+            <table id="bottom_checked_table">
+              <tr>
+                <th>型名</th>
+              </tr>
+              <tr>
+                <td id="product_bottom"></td>
+              </tr>
+              <tr>
+                <th>柄名</th>
+              </tr>
+              <tr>
+                <td id="type_name_bottom"></td>
+              </tr>
+              <tr>
+                <th>色</th>
+              </tr>
+              <tr>
+                <td id="color_name_bottom"></td>
+              </tr>
+              <tr>
+                <th>サイズ</th>
+              </tr>
+              <tr>
+                <td>
+                  <select id="size_botton">
+                    <option hidden class="select_hidden">選択してください</option>
+                    <option value="">73</option>
+                    <option value="">76</option>
+                    <option value="">79</option>
+                    <option value="">82</option>
+                    <option value="">85</option>
+                    <option value="">88</option>
+                    <option value="">92</option>
+                    <option value="">96</option>
+                    <option value="">100</option>
+                    <option value="">105</option>
+                    <option value="">110</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th>金額</th>
+              </tr>
+              <tr>
+                <td id="amount_bottom"></td>
+              </tr>
+            </table>
+
+            <table id="total_price">
+              <tr>
+                <th>合計金額</th>
+              </tr>
+              <tr>
+                <td id="amount_all"></td>
+              </tr>
+            </table>
+
+
+          </div>
+
+          <div id="order">
+            <button id="order_back" type="button" class="hidden-print hidden" onclick="order_back()">戻る</button>
+            <button id="order_button" type="button" onclick="order()" class="effect-target hidden-print">
+              <img id="cart" src="./../img/icon/cart.svg">
+              <p id="order_text"></p>
+            </button>
+          </div>
+
+        </div>
+      </dic>
+
+    </div>
+
+    <div id="tutorial" onclick="tutorial()">
+      <div id="top_tutorial">
+        <h2>タッチしてスタート</h2>
+        <h4>ユニフォームカスタマイズ</h4>
+      </div>
+    </div>
+
+    
+
+    <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/three.min.js"></script>
+    <script
+      src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/controls/OrbitControls.js"></script>
+    <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/loaders/GLTFLoader.js"></script>
+    <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/shaders/CopyShader.js"></script>
+    <script
+      src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/postprocessing/EffectComposer.js"></script>
+    <script
+      src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/postprocessing/RenderPass.js"></script>
+    <script
+      src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/postprocessing/ShaderPass.js"></script>
+    <script src="https://r105.threejsfundamentals.org/threejs/../3rdparty/dat.gui.min.js"></script>
+
+
+    <script src="JavaSprict/camera_utils.js"></script>
+    <script src="JavaSprict/control_utils.js"></script>
+    <script src="JavaSprict/drawing_utils.js"></script>
+    <script src="face_mesh/face_mesh.js"></script>
+    <script src="JavaSprict/Thumbnails.js"></script>
+    <script src="JavaSprict/Product_image.js"></script>
+    <script src="JavaSprict/swiper-bundle.min.js"></script>
+    <script src="JavaSprict/name.js"></script>
+    <script src="JavaSprict/JavaScript.js"></script>
+    <!-- <script src="JavaSprict/LUT.js"></script> -->
+  </main>
+
+</body>
+
+</html>
