@@ -91,8 +91,8 @@ function top_image(top_number_01, top_number_02, top_number_03, Front_back) {
   // render(img, Product_image[top_number_01][top_number_02][top_number_03][Front_back])
 
   const file_name = "./../img/" + Product_image[top_number_01][top_number_02][top_number_03][Front_back];
-  img.width = document.getElementById('image_box').clientWidth;
-  img.height = document.getElementById('image_box').clientHeight;
+  img.width = document.getElementById('image_box').clientWidth * 2;
+  img.height = document.getElementById('image_box').clientHeight * 2;
   const context = img.getContext('2d');
   const chara = new Image();
   chara.src = file_name;  // 画像のURLを指定
@@ -129,8 +129,8 @@ function bottom_image(bottom_number_01, bottom_number_02, bottom_number_03, Fron
   // render(img, Product_image_bottom[bottom_number_01][bottom_number_02][bottom_number_03][Front_back])
 
   const file_name = "./../img/" + Product_image_bottom[bottom_number_01][bottom_number_02][bottom_number_03][Front_back];
-  img.width = document.getElementById('image_box').clientWidth;
-  img.height = document.getElementById('image_box').clientHeight;
+  img.width = document.getElementById('image_box').clientWidth * 2;
+  img.height = document.getElementById('image_box').clientHeight * 2;
   const context = img.getContext('2d');
   const chara = new Image();
   chara.src = file_name;  // 画像のURLを指定
@@ -165,8 +165,8 @@ function mannequin(Front_back) {
   var img = document.getElementById("main_image_mannequin");
 
   const file_name = "./../img/" + mannequin_image[Front_back];
-  img.width = document.getElementById('image_box').clientWidth;
-  img.height = document.getElementById('image_box').clientHeight;
+  img.width = document.getElementById('image_box').clientWidth * 2;
+  img.height = document.getElementById('image_box').clientHeight * 2;
   const context = img.getContext('2d');
   const chara = new Image();
   chara.src = file_name;  // 画像のURLを指定
@@ -201,8 +201,8 @@ function backgraund(backgraund_number) {
   var img = document.getElementById("backgraund_image");
 
   const file_name = "./../img/" + backgraund_image[backgraund_number];
-  img.width = document.getElementById('image_box').clientWidth;
-  img.height = document.getElementById('image_box').clientHeight;
+  img.width = document.getElementById('image_box').clientWidth * 2;
+  img.height = document.getElementById('image_box').clientHeight * 2;
   const context = img.getContext('2d');
   const chara = new Image();
   chara.src = file_name;  // 画像のURLを指定
